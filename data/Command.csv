@@ -1,0 +1,6 @@
+﻿Action,Target,Kind,TakeHp,UseMp
+攻撃,敵方,Attack,-1,0
+攻撃魔法,敵方,Magic,-1,-1
+回復魔法,味方,Magic,1,-1
+防御,自分,Difence,0,0
+庇う,味方,Difence,0,0
