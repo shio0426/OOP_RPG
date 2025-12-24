@@ -163,7 +163,7 @@ namespace OOP_RPG
 
             PictureBox p = new PictureBox();
             p.Image = img;
-            p.Size = new Size(65, 65);
+            p.Size = new Size(33, 33);
             p.SizeMode = PictureBoxSizeMode.Zoom;
             p.BackColor = Color.Transparent;
             p.Margin = new Padding(1);

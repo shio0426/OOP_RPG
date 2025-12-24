@@ -877,7 +877,7 @@ namespace OOP_RPG
             }
 
             PictureBox? deathEffect = CreateEffect("ゴースト", pic);
-            deathEffect.Size = new Size(50, 50);
+            deathEffect.Size = new Size(30, 30);
             deathEffect.Location = new Point(
                     (pic.Width - deathEffect.Width) / 2,
                     (pic.Height - deathEffect.Height) / 2

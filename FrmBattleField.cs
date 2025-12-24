@@ -91,13 +91,13 @@ namespace OOP_RPG
         private void InitializeBattleUnits()
         {
             // 配置設定
-            int startX_Hero = 1050;  // 味方X座標
+            int startX_Hero = 900;  // 味方X座標
             int startY_Hero = 100;   // 味方Y座標
-            int stepY_Hero = 200;   // 味方の縦の間隔
+            int stepY_Hero = 150;   // 味方の縦の間隔
 
-            int startX_Enemy = 150; // 敵X座標
+            int startX_Enemy = 100; // 敵X座標
             int startY_Enemy = 100;  // 敵Y座標
-            int stepY_Enemy = 200;  // 敵の縦の間隔
+            int stepY_Enemy = 150;  // 敵の縦の間隔
 
             int heroIndex = 0;
             int enemyIndex = 0;
@@ -114,7 +114,7 @@ namespace OOP_RPG
                 PictureBox pic = new PictureBox();
                 pic.Name = $"pic_{hero.Name}"; // 名前
                 pic.Image = charaImg;
-                pic.Size = new Size(150, 150); // サイズ
+                pic.Size = new Size(100, 100); // サイズ
                 pic.SizeMode = PictureBoxSizeMode.Zoom;
                 pic.BackColor = Color.Transparent;
 
@@ -169,12 +169,12 @@ namespace OOP_RPG
                 pic.Image = charaImg;
                 if(Boss)
                 {
-                    pic.Size = new Size(250, 250); // サイズ
+                    pic.Size = new Size(200, 200); // サイズ
                     Boss = false;
                 }
                 else
                 {
-                    pic.Size = new Size(150, 150); // サイズ
+                    pic.Size = new Size(100, 100); // サイズ
                 }
                 pic.SizeMode = PictureBoxSizeMode.Zoom;
                 pic.BackColor = Color.Transparent;
