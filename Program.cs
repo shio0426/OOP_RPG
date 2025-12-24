@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace OOP_RPG
 {
     internal static class Program
@@ -16,16 +18,46 @@ namespace OOP_RPG
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // ゲーム画面の生成
-            var bf = new FrmBattleField();
+            // 難易度選択画面を出す
+            FrmDifficultySelect selectForm = new FrmDifficultySelect();
 
-            // GameMasterにゲーム画面の参照をセット
-            GameMaster.SetBattleField(bf);
+            // ボタンが押されたら処理を進める
+            if (selectForm.ShowDialog() == DialogResult.OK)
+            {
+                // 選択されたファイル名を取得
+                string selectedFile = selectForm.SelectedEnemyCsv;
+                string difficulty = "Normal"; // デフォルト
 
-            // TraceLogにゲーム画面の参照をセット
-            TraceLog.SetBattleField(bf);
-            TraceLog.Write("バトル開始！");
-            Application.Run(bf);
+                if (selectedFile == "Enemy.csv")
+                {
+                    difficulty = "Easy";      // 初級
+                }
+                else if (selectedFile == "BossEnemy.csv")
+                {
+                    difficulty = "Hard";      // 上級
+                }
+
+                // フォーム破棄
+                selectForm.Dispose();
+
+                CharacterList.Initialize(selectedFile);
+
+                // ゲーム画面の生成
+                var bf = new FrmBattleField(difficulty);
+
+                GameMaster.SetBattleField(bf);
+
+                TraceLog.SetBattleField(bf);
+
+                TraceLog.Write("バトル開始！");
+
+                // ゲーム起動
+                Application.Run(bf);
+            }
+            else
+            {
+                selectForm.Dispose();
+            }
         }
     }
 }

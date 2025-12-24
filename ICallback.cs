@@ -13,12 +13,12 @@ namespace OOP_RPG
     /// </summary>
     /// <param name="action"></param>
     /// <param name="target"></param>
-    delegate void Callback(string action,string target);
+    delegate Task Callback(string action,string target);
     /// <summary>
     /// コールバックを受けるインターフェイス
     /// </summary>
     internal interface ICallback
     {
-        public void Callback(string action, string target);
+        public Task Callback(string action, string target);
     }
 }

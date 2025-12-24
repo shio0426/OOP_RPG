@@ -8,8 +8,7 @@ namespace OOP_RPG
 {
     internal class ExtFile
     {
-        public static readonly string Path = 
-            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) +
-            @"\source\repos\OOP_RPG\data";
+        public static readonly string Path =
+                    System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data");
     }
 }

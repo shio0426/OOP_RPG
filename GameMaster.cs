@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace OOP_RPG
     internal static class GameMaster
     {
         // @@画面を作成した後コメントを外す
-        public static FrmBattleField? BattleField { get; private set; }
+        public static FrmBattleField? BattleField { get; private set; } = default!;
 
         // 静的コンストラクタ:このクラス初回仕使用に1回だけ実行される
         static GameMaster()
@@ -30,11 +31,13 @@ namespace OOP_RPG
             foreach (var it in CharacterList.Heroes)
             {
                 BattleQueue.Enq(it.Value, it.Value.Speed);
+                Debug.WriteLine($"ヒーローの{it.Value.Name}がインキューしたよ！");
 
             }
             foreach (var it in CharacterList.Enemies)
             {
                 BattleQueue.Enq(it.Value, it.Value.Speed);
+                Debug.WriteLine($"エネミーの{it.Value.Name}がインキューしたよ！");
             }
         }
         /// <summary>
@@ -43,6 +46,7 @@ namespace OOP_RPG
         public static void Run()
         {
             var turn = BattleQueue.Deq();
+
             if (turn == null) return;
 
             TraceLog.Write($"GameMaster: {((Character)turn).Name}にターンを渡す");
@@ -53,9 +57,9 @@ namespace OOP_RPG
         /// コンストラクタを動かすためのダミーメソッド
         /// ユニットテスト用
         /// </summary>
-        public static void Dummy()
-        {
-            // 何もしない
-        }   
+        //public static void Dummy()
+        //{
+        //    // 何もしない
+        //}   
     }
 }

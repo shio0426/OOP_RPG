@@ -14,6 +14,6 @@ namespace OOP_RPG
         /// <summary>
         /// 自分のターン
         /// </summary>
-        public void YourTurn();
+        public Task YourTurn();
     }
 }

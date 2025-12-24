@@ -30,10 +30,21 @@ namespace OOP_RPG
         public static readonly Dictionary<string, Enemy> Enemies = [];
         public static readonly Dictionary<string, Character> AllChars = [];
 
-        static CharacterList()
+        //static CharacterList()
+        //{
+        //    CreateHero();
+        //    CreateEnemy();
+        //}
+
+        public static void Initialize(string enemyFileName)
         {
+            // 既にデータがある場合は重複しないようにクリアしておく
+            Heroes.Clear();
+            Enemies.Clear();
+            AllChars.Clear();
+
             CreateHero();
-            CreateEnemy();
+            CreateEnemy(enemyFileName); // ファイル名を渡す
         }
 
         private static void CreateHero()
@@ -56,15 +67,28 @@ namespace OOP_RPG
             }
         }
 
-        private static void CreateEnemy()
+        private static void CreateEnemy(string fileName)
         {
             try
             {
-                var csv = Csv.Load<EnemyEntity>($@"{ExtFile.Path}\Enemy.csv");
+                // ファイル名に"Boss"が含まれているかでボスモードを判定
+                bool isBossMode = fileName.Contains("Boss");
+                var csv = Csv.Load<EnemyEntity>($@"{ExtFile.Path}\{fileName}");
                 foreach (var it in csv)
                 {
-                    var enemy = new Enemy(it.Name, it.Hp, it.Mp, it.Speed,
-                    it.Kind);
+                    Enemy enemy;
+
+                    if (isBossMode)
+                    {
+                        // ボスとして生成 (ルーチンで動く)
+                        enemy = new Boss(it.Name, it.Hp, it.Mp, it.Speed, it.Kind);
+                    }
+                    else
+                    {
+                        // 通常の敵として生成 (ランダムで動く)
+                        enemy = new Enemy(it.Name, it.Hp, it.Mp, it.Speed, it.Kind);
+                    }
+
                     Enemies.Add(enemy.Name, enemy);
                     AllChars.Add(enemy.Name, enemy);
                 }

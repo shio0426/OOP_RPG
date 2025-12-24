@@ -14,6 +14,8 @@ namespace OOP_RPG
         public string Kind { get; private set; } = "";
         public int TakeHp { get; private set; }
         public int UseMp { get; private set; }
+
+        public bool IsBossOnly { get; private set; }
     }
 
     internal static class CommandList
